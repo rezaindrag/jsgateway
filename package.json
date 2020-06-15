@@ -1,0 +1,25 @@
+{
+  "name": "jsgateway",
+  "version": "1.0.0",
+  "description": "Example API Gateway with Javascript",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "get-stream": "^5.1.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rezaindrag/jsgateway.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rezaindrag/jsgateway/issues"
+  },
+  "homepage": "https://github.com/rezaindrag/jsgateway#readme"
+}

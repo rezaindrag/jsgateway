@@ -1,2 +1,2 @@
 # jsgateway
-Example API Gateway with Javascript
+Example API Gateway with Node.js

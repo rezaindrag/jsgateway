@@ -1,9 +1,23 @@
 const request = require("request");
 const getStream = require("get-stream");
 
+const API_KEY = "your-api-key";
+
+function authorize(authorization) {
+  if (authorization !== API_KEY) {
+    throw new Error("Your API key is invalid or incorrect.");
+  }
+}
+
 function init(server, recipe) {
   for (let endpoint of recipe.endpoints) {
     const handler = async (req, res) => {
+      try {
+        await authorize(req.header("Authorization"));
+      } catch (e) {
+        return res.status(401).json({ message: e.message });
+      }
+
       let statusCode = 0;
 
       const proxy = req.pipe(request({
@@ -21,10 +35,10 @@ function init(server, recipe) {
       const data = JSON.parse(originalString);
 
       if (statusCode >= 300) {
-        return;
+        return res.status(statusCode).json({ message: "An error occurred." });
       }
 
-      await res.json(data);
+      res.status(statusCode).json(data);
     };
 
     server[endpoint.method.toLowerCase()](endpoint.path, handler);

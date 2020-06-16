@@ -34,10 +34,6 @@ function init(server, recipe) {
 
       const data = JSON.parse(originalString);
 
-      if (statusCode >= 300) {
-        return res.status(statusCode).json({ message: "An error occurred." });
-      }
-
       res.status(statusCode).json(data);
     };
 
